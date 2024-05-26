@@ -5,14 +5,13 @@ from followers.models import Follower
 
 class FollowerSerializer(serializers.ModelSerializer):
     """
-    Serializer for the Like model
-    The create method handles the unique constraint on 'owner' and 'post'
+    Serializer for the Follower model
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed.username')
 
     class Meta:
-        model = Like
+        model = Follower
         fields = ['id', 'created_at', 'owner', 'followed', 'followed_name']
     
     def create(self, validated_data):
